@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9BD52F7D-6B44-4B4A-BA79-B54B8A6590A4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>WinCron</RootNamespace>
+    <AssemblyName>WinCron</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>deps\log4net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Util\Configuration.cs" />
+    <Compile Include="Util\ConfigurationExtensions.cs" />
+    <Compile Include="Logging\ConsoleErrorReporter.cs" />
+    <Compile Include="File\DateFieldMatch.cs" />
+    <Compile Include="File\Date\DateSourceMatch.cs" />
+    <Compile Include="Util\Disposable.cs" />
+    <Compile Include="Util\DisposableAction.cs" />
+    <Compile Include="Util\Disposables.cs" />
+    <Compile Include="File\Date\EmptyDateSourceFactory.cs" />
+    <Compile Include="Service\ServiceErrorReporter.cs" />
+    <Compile Include="Task\ExitedArgs.cs" />
+    <Compile Include="Util\IConfiguration.cs" />
+    <Compile Include="File\Date\ICronDateSource.cs" />
+    <Compile Include="File\Date\ICronDateSourceFactory.cs" />
+    <Compile Include="File\IDateFieldMatch.cs" />
+    <Compile Include="Logging\IErrorReporter.cs" />
+    <Compile Include="File\CronEntry.cs" />
+    <Compile Include="File\CronFileReader.cs" />
+    <Compile Include="CronImpl.cs" />
+    <Compile Include="CronImplFactory.cs" />
+    <Compile Include="File\CronReaderResult.cs" />
+    <Compile Include="Logging\ILoggingInfo.cs" />
+    <Compile Include="Service\IServerProcess.cs" />
+    <Compile Include="Service\IServiceAndConsoleImplFactory.cs" />
+    <Compile Include="Service\IServiceAsyncImpl.cs" />
+    <Compile Include="Task\ITask.cs" />
+    <Compile Include="Task\ITaskFactory.cs" />
+    <Compile Include="File\ITimeFieldMatch.cs" />
+    <Compile Include="Task\IWaitEvent.cs" />
+    <Compile Include="Logging\Logging.cs" />
+    <Compile Include="Logging\LoggingExecutor.cs" />
+    <Compile Include="Logging\LoggingInfo.cs" />
+    <Compile Include="Task\ProcWrapper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Service\ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Service\ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ServerProcessRunner.cs" />
+    <Compile Include="Service\ServiceAndConsoleRunner.cs" />
+    <Compile Include="Service\ServiceProcess.cs" />
+    <Compile Include="Service\ServiceStarter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Service\ServiceStarter.Designer.cs">
+      <DependentUpon>ServiceStarter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\StringExtensions.cs" />
+    <Compile Include="Task\SubProcessFactory.cs" />
+    <Compile Include="File\TimeFieldMatch.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="settings.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="log4net.config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Service\ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\ServiceStarter.resx">
+      <DependentUpon>ServiceStarter.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="deps\retlang\src\Retlang\Retlang.csproj">
+      <Project>{65abcf4f-88f0-46ef-a6cf-71850019262e}</Project>
+      <Name>Retlang</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
