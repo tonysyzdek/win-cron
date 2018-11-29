@@ -22,11 +22,11 @@ namespace WinCron.File
             Args = args;
         }
 
-        private ITimeFieldMatch Months { get; }
-        private ITimeFieldMatch MDays { get; }
-        private IDateFieldMatch WDays { get; }
-        private ITimeFieldMatch Hours { get; }
-        private ITimeFieldMatch Minutes { get; }
+        public ITimeFieldMatch Months { get; }
+        public ITimeFieldMatch MDays { get; }
+        public IDateFieldMatch WDays { get; }
+        public ITimeFieldMatch Hours { get; }
+        public ITimeFieldMatch Minutes { get; }
 
         public string FileName { get; }
         public string Args { get; }

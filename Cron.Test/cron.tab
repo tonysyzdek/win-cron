@@ -1,0 +1,6 @@
+﻿set PYTHONPATH=c:/daily_process
+var pyexec="c:\Program Files\Python\Python.exe"
+
+30 08 10 06 * /home/ramesh/bin/full-backup
+00 09-18 * * 1-5 c:\python\python.exe hist_vol.py
+00 11,16 * * B $pyexec these are args
